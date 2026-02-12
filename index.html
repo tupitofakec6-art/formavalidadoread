@@ -8,50 +8,24 @@
     <style>
         :root { --green-forma: #41ab5d; --bg-success: #e9f5e9; }
         body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: #333; background-color: #fff; }
-        
-        /* Cabeçalho Padronizado */
         header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #eee; }
-        .logo-topo { width: 120px; height: auto; margin-bottom: 10px; }
+        .logo-topo { width: 140px; height: auto; margin-bottom: 10px; }
         .header-info { font-size: 13px; line-height: 1.6; color: #444; }
-
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-        h1 { font-weight: 400; font-size: 26px; margin-bottom: 40px; color: #333; }
-
-        /* Estilo da Busca */
-        #busca-section { display: block; }
+        h1 { font-weight: 400; font-size: 26px; margin-bottom: 40px; }
         .input-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 600; }
-        input { 
-            width: 100%; max-width: 450px; padding: 14px; 
-            border: 1px solid #ccc; border-radius: 4px; font-size: 16px; 
-            text-align: center; outline: none; margin-bottom: 5px;
-        }
-        .btn-validar { 
-            background: var(--green-forma); color: white; border: none; 
-            padding: 15px 55px; font-size: 18px; cursor: pointer; border-radius: 4px;
-            display: inline-flex; align-items: center; gap: 10px; margin-top: 10px;
-        }
-
-        /* Estilo do Sucesso */
-        #sucesso-section { display: none; background-color: var(--bg-success); padding: 50px 20px; border-radius: 4px; animation: fadeIn 0.5s; }
-        .status-ok { font-size: 24px; font-weight: 400; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        label { display: block; margin-bottom: 10px; font-weight: 600; }
+        input { width: 100%; max-width: 400px; padding: 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; text-align: center; }
+        .btn-validar, .btn-action { background: var(--green-forma); color: white; border: none; padding: 15px 45px; font-size: 16px; cursor: pointer; border-radius: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; margin: 5px; text-decoration: none; }
+        #sucesso-section { display: none; background-color: var(--bg-success); padding: 50px 20px; border-radius: 4px; }
         .info-doc { color: #4a704a; font-size: 15px; line-height: 1.8; margin-bottom: 30px; }
-        .highlight { color: var(--green-forma); font-weight: 600; }
-        
-        .btn-action { 
-            background: var(--green-forma); color: white; text-decoration: none;
-            padding: 12px 25px; border-radius: 4px; display: inline-flex; align-items: center;
-            gap: 8px; font-size: 14px; margin: 8px; border: none; cursor: pointer; font-weight: 600;
-        }
         .footer-info { font-size: 13px; color: #5a8c5a; margin-top: 25px; border-top: 1px dashed #c3e6cb; padding-top: 15px; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body onload="gerarDesafio()">
 
 <header>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-M8vX2wO2Hnd_mG0_C-x_S9f9gL-rP9vsw&s" class="logo-topo">
+    <img src="https://grupoformaead.com.br/wp-content/uploads/2021/08/logo_forma_brasil.png" class="logo-topo" alt="Logo Forma Brasil">
     <div class="header-info">
         <strong>Forma Brasil Educacional</strong><br>
         CNPJ: 41.563.154/0001-79<br>
@@ -64,48 +38,37 @@
     <div id="busca-section">
         <h1>Validação de documentos e cadastros</h1>
         <div class="input-group">
-            <label>Insira o código de verificação:</label>
-            <input type="text" id="codigo" placeholder="RQ705HBYF2U2250">
+            <label>Código de verificação:</label>
+            <input type="text" id="codigo" placeholder="RQ703BHJY2U2139">
         </div>
         <div class="input-group">
-            <label id="label-captcha">Carregando desafio...</label>
-            <input type="text" id="captcha" placeholder="Sua resposta">
+            <label id="label-captcha">Carregando...</label>
+            <input type="text" id="captcha">
         </div>
-        <button class="btn-validar" onclick="validar()">Validar <span>➜</span></button>
+        <button class="btn-validar" onclick="validar()">Validar ➜</button>
     </div>
 
     <div id="sucesso-section">
         <h1>Validação de documentos e cadastros</h1>
-        <div class="status-ok">✔ Documento válido</div>
-        
+        <div style="font-size: 24px; margin-bottom: 20px;">✔ Documento válido</div>
         <div class="info-doc">
             Documento validado digitalmente<br>
-            Código de verificação: <span class="highlight" id="res-codigo"></span><br><br>
-            
-            <strong>Descrição:</strong> DECLARAÇÃO DE CONCLUSAO (data e matrícula de conclusão)<br>
-            Aproveitamento de aulas práticas e projeto integrado<br>
+            Código: <span style="font-weight: 600;" id="res-codigo"></span><br><br>
+            <strong>Descrição:</strong> Declaração de Conclusão (data de matrícula e conclusão)<br>
             <strong>Curso:</strong> Habilitação Profissional Técnica de Nível Médio em Agropecuária<br>
             <strong>RA:</strong> 22928/73144872 / <strong>Matrícula:</strong> 23603<br>
             <strong>Aluno:</strong> JOÃO VITOR CARVALHO COSTA<br>
             <strong>CPF:</strong> 078.***.***-26<br>
-            <strong>Data de expedição do documento:</strong> 13/02/2026<br><br>
-            
+            <strong>Data de expedição:</strong> 02/02/2026<br><br>
             <div class="footer-info" id="audit-trail"></div>
         </div>
-
         <button class="btn-action" onclick="baixarPDF()">📄 Gerar documento</button>
         <button class="btn-action" onclick="window.print()">🖨 Imprimir esta consulta</button>
     </div>
 </div>
 
 <script>
-    // Lista de desafios aleatórios
-    const desafios = [
-        { p: "Na palavra: CARRO. Quais letras são vogais?", r: "AO" },
-        { p: "Quanto é 6 + 4?", r: "10" },
-        { p: "Qual a primeira letra de BRASIL?", r: "B" },
-        { p: "Na palavra: FORMA. Qual a última letra?", r: "A" }
-    ];
+    const desafios = [{p: "Vogais de CARRO?", r: "AO"}, {p: "Quanto é 7 + 3?", r: "10"}];
     let desafioAtual;
 
     function gerarDesafio() {
@@ -114,33 +77,24 @@
     }
 
     function validar() {
-        const codInput = document.getElementById('codigo').value.toUpperCase().trim();
-        const capInput = document.getElementById('captcha').value.toUpperCase().trim().replace(/\s/g, '');
-        
-        // Código que você solicitou
-        const codigoCorreto = "RQ705HBYF2U2250";
-
-        if (codInput === codigoCorreto && capInput === desafioAtual.r.replace(/\s/g, '')) {
+        const cod = document.getElementById('codigo').value.toUpperCase().trim();
+        const cap = document.getElementById('captcha').value.toUpperCase().trim();
+        // Atualizado para o código da sua nova imagem
+        if (cod === "RQ703BHJY2U2139" && cap === desafioAtual.r) {
             document.getElementById('busca-section').style.display = 'none';
             document.getElementById('sucesso-section').style.display = 'block';
-            document.getElementById('res-codigo').innerText = codInput;
-            
-            // Data de consulta em tempo real
+            document.getElementById('res-codigo').innerText = cod;
             const agora = new Date();
-            document.getElementById('audit-trail').innerHTML = 
-                `Consultado em: ${agora.toLocaleString('pt-BR')}. IP: 2804:436c:f0:1f2c... Localização: Carolina-MA.`;
+            document.getElementById('audit-trail').innerText = `Consultado em: ${agora.toLocaleString('pt-BR')}. IP: 2804:436c... Localização: Carolina-MA.`;
         } else {
-            alert("Dados incorretos. Verifique o código e o desafio.");
+            alert("Dados incorretos!");
             gerarDesafio();
-            document.getElementById('captcha').value = "";
         }
     }
 
     function baixarPDF() {
-        // Abre o PDF que você subiu por UPLOAD
         window.open('documento.pdf', '_blank');
     }
 </script>
-
 </body>
 </html>
