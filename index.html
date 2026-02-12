@@ -9,7 +9,7 @@
         :root { --green-forma: #41ab5d; --bg-success: #e9f5e9; }
         body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: #333; background-color: #fff; }
         header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #eee; }
-        .logo-topo { width: 140px; height: auto; margin-bottom: 15px; }
+        .logo-topo { width: 140px; height: auto; margin-bottom: 10px; }
         .header-info { font-size: 13px; line-height: 1.6; color: #444; }
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; text-align: center; }
         h1 { font-weight: 400; font-size: 26px; margin-bottom: 40px; }
@@ -38,11 +38,11 @@
     <div id="busca-section">
         <h1>Validação de documentos e cadastros</h1>
         <div class="input-group">
-            <label>Insira o código de verificação:</label>
-            <input type="text" id="codigo" placeholder="RQ703BHJY2U2139">
+            <label>Código de verificação:</label>
+            <input type="text" id="codigo" placeholder="RQ708BGJY2O2550">
         </div>
         <div class="input-group">
-            <label id="label-captcha">Carregando desafio...</label>
+            <label id="label-captcha">Carregando...</label>
             <input type="text" id="captcha">
         </div>
         <button class="btn-validar" onclick="validar()">Validar ➜</button>
@@ -54,11 +54,11 @@
         <div class="info-doc">
             Documento validado digitalmente<br>
             Código de verificação: <span style="font-weight: 600;" id="res-codigo"></span><br><br>
-            <strong>Descrição:</strong> DECLARAÇÃO DE CONCLUSÃO <br>
-            <strong>Curso:</strong> Técnico em Agropecuária <br>
-            <strong>Aluno:</strong> JOÃO VITOR CARVALHO COSTA <br>
-            <strong>CPF:</strong> 078.963.473-26 <br>
-            <strong>Data de expedição:</strong> 13/02/2026 <br><br>
+            <strong>Descrição:</strong> Declaração de Conclusão de Curso, Aulas práticas e aproveitamento.<br>
+            <strong>Curso:</strong> Técnico em Agropecuária<br>
+            <strong>Aluno:</strong> JOÃO VITOR CARVALHO COSTA<br>
+            <strong>CPF:</strong> 078.963.473-26<br>
+            <strong>Data de expedição:</strong> 13/02/2026<br><br>
             <div class="footer-info" id="audit-trail"></div>
         </div>
         <button class="btn-action" onclick="baixarPDF()">📄 Gerar documento</button>
@@ -67,11 +67,7 @@
 </div>
 
 <script>
-    const desafios = [
-        {p: "Quais as vogais de CARRO?", r: "AO"},
-        {p: "Quanto é 4 + 6?", r: "10"},
-        {p: "Primeira letra de BRASIL?", r: "B"}
-    ];
+    const desafios = [{p: "Vogais de CARRO?", r: "AO"}, {p: "Quanto é 8 + 2?", r: "10"}];
     let desafioAtual;
 
     function gerarDesafio() {
@@ -83,8 +79,8 @@
         const cod = document.getElementById('codigo').value.toUpperCase().trim();
         const cap = document.getElementById('captcha').value.toUpperCase().trim();
         
-        // Código atualizado para o documento enviado
-        if (cod === "RQ703BHJY2U2139" && cap === desafioAtual.r) {
+        // NOVO CÓDIGO ATUALIZADO: RQ708BGJY2O2550
+        if (cod === "RQ708BGJY2O2550" && cap === desafioAtual.r) {
             document.getElementById('busca-section').style.display = 'none';
             document.getElementById('sucesso-section').style.display = 'block';
             document.getElementById('res-codigo').innerText = cod;
@@ -98,7 +94,6 @@
     }
 
     function baixarPDF() {
-        // Link direto do Google Drive configurado
         window.open('https://drive.google.com/file/d/15qUR2svtN_OxJRMF9f_-1G7DpK7wRMCI/view?usp=sharing', '_blank');
     }
 </script>
