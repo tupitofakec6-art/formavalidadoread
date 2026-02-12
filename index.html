@@ -9,7 +9,6 @@
         :root { --green-forma: #41ab5d; --bg-success: #e8f5e9; }
         body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: #333; background-color: #fff; }
         
-        /* Header conforme imagem */
         header { padding: 20px; text-align: center; font-size: 13px; line-height: 1.5; color: #555; }
         .logo { width: 120px; margin-bottom: 10px; }
         hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
@@ -17,10 +16,9 @@
         .container { max-width: 900px; margin: 0 auto; padding: 20px; text-align: center; }
         h1 { font-weight: 400; font-size: 26px; margin-bottom: 40px; }
 
-        /* Tela de Busca */
         #busca-section { display: block; }
         .input-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 10px; font-size: 15px; }
+        label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 600; }
         input { 
             width: 100%; max-width: 450px; padding: 12px; 
             border: 1px solid #ddd; border-radius: 2px; font-size: 16px; 
@@ -32,6 +30,20 @@
             display: inline-flex; align-items: center; gap: 10px;
         }
 
-        /* Tela de Sucesso (Estilo da imagem 2) */
         #sucesso-section { display: none; background-color: var(--bg-success); padding: 50px 20px; margin-top: 20px; border-radius: 4px; }
-        .status-ok { font-size: 26px;
+        .status-ok { font-size: 26px; font-weight: 400; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .info-doc { color: #4a704a; font-size: 15px; line-height: 1.8; margin-bottom: 35px; }
+        .highlight { color: var(--green-forma); font-weight: 600; }
+        
+        .btn-action { 
+            background: var(--green-forma); color: white; text-decoration: none;
+            padding: 12px 25px; border-radius: 4px; display: inline-flex; align-items: center;
+            gap: 8px; font-size: 14px; margin: 8px; border: none; cursor: pointer; font-weight: 600;
+        }
+    </style>
+</head>
+<body onload="gerarPerguntaAleatoria()">
+
+<header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-M8vX2wO2Hnd_mG0_C-x_S9f9gL-rP9vsw&s" class="logo" alt="Logo">
+    <div>Forma Brasil Educacional<br>CNPJ: 41.
