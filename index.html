@@ -6,33 +6,36 @@
     <title>Validação de Documentos - Forma Brasil</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --green-forma: #41ab5d; --bg-success: #e8f5e9; }
-        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: #333; background-color: #fff; }
+        :root { --green-forma: #41ab5d; --bg-success: #e9f5e9; }
+        body { font-family: 'Open Sans', sans-serif; margin: 0; padding: 0; color: #333; background-color: #fff; line-height: 1.6; }
         
-        header { padding: 20px; text-align: center; font-size: 13px; line-height: 1.5; color: #555; }
+        header { padding: 20px; text-align: center; font-size: 13px; color: #555; }
         .logo { width: 120px; margin-bottom: 10px; }
         hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; text-align: center; }
-        h1 { font-weight: 400; font-size: 26px; margin-bottom: 40px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; text-align: center; }
+        h1 { font-weight: 400; font-size: 26px; margin-bottom: 40px; color: #333; }
 
-        #busca-section { display: block; }
+        /* Estilo da Busca */
         .input-group { margin-bottom: 25px; }
         label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 600; }
         input { 
-            width: 100%; max-width: 450px; padding: 12px; 
-            border: 1px solid #ddd; border-radius: 2px; font-size: 16px; 
-            text-align: center;
+            width: 100%; max-width: 450px; padding: 14px; 
+            border: 1px solid #ddd; border-radius: 4px; font-size: 16px; 
+            text-align: center; outline: none;
         }
+        input:focus { border-color: var(--green-forma); }
         .btn-validar { 
             background: var(--green-forma); color: white; border: none; 
-            padding: 15px 45px; font-size: 18px; cursor: pointer; border-radius: 4px;
-            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 50px; font-size: 18px; cursor: pointer; border-radius: 4px;
+            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
         }
+        .btn-validar:hover { background: #358e4d; }
 
-        #sucesso-section { display: none; background-color: var(--bg-success); padding: 50px 20px; margin-top: 20px; border-radius: 4px; }
+        /* Estilo do Sucesso (Sua Imagem 2) */
+        #sucesso-section { display: none; background-color: var(--bg-success); padding: 50px 20px; border-radius: 4px; animation: fadeIn 0.5s; }
         .status-ok { font-size: 26px; font-weight: 400; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 12px; }
-        .info-doc { color: #4a704a; font-size: 15px; line-height: 1.8; margin-bottom: 35px; }
+        .info-doc { color: #4a704a; font-size: 15px; margin-bottom: 35px; }
         .highlight { color: var(--green-forma); font-weight: 600; }
         
         .btn-action { 
@@ -40,10 +43,89 @@
             padding: 12px 25px; border-radius: 4px; display: inline-flex; align-items: center;
             gap: 8px; font-size: 14px; margin: 8px; border: none; cursor: pointer; font-weight: 600;
         }
+        .footer-info { font-size: 13px; color: #5a8c5a; margin-top: 25px; border-top: 1px dashed #c3e6cb; padding-top: 15px; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body onload="gerarPerguntaAleatoria()">
+<body onload="gerarDesafio()">
 
 <header>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-M8vX2wO2Hnd_mG0_C-x_S9f9gL-rP9vsw&s" class="logo" alt="Logo">
-    <div>Forma Brasil Educacional<br>CNPJ: 41.
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-M8vX2wO2Hnd_mG0_C-x_S9f9gL-rP9vsw&s" class="logo" alt="Forma Brasil">
+    <div>Forma Brasil Educacional<br>CNPJ: 41.563.154/0001-79<br>Av. Presidente Café Filho, 728, Bessa<br>João Pessoa-PB<br>atendimento@grupoformaead.com.br</div>
+    <hr>
+</header>
+
+<div class="container">
+    <div id="busca-section">
+        <h1>Validação de documentos e cadastros</h1>
+        <div class="input-group">
+            <label>Insira o código de verificação:</label>
+            <input type="text" id="codigo" placeholder="RQ705HBYF2U2250">
+        </div>
+        <div class="input-group">
+            <label id="label-captcha">Carregando desafio...</label>
+            <input type="text" id="captcha" placeholder="Resposta">
+        </div>
+        <button class="btn-validar" onclick="validar()">Validar <span>➜</span></button>
+    </div>
+
+    <div id="sucesso-section">
+        <h1>Validação de documentos e cadastros</h1>
+        <div class="status-ok">✔ Documento válido</div>
+        
+        <div class="info-doc">
+            Documento validado digitalmente<br>
+            Código de verificação: <span class="highlight" id="res-codigo"></span><br><br>
+            
+            <strong>Descrição:</strong> DECLARAÇÃO DE CONCLUSAO (data e matrícula de conclusão)<br>
+            Aproveitamento de aulas práticas e projeto integrado<br>
+            <strong>Curso:</strong> Habilitação Profissional Técnica de Nível Médio em Agropecuária<br>
+            <strong>RA:</strong> 22928/73144872 / <strong>Matrícula:</strong> 23603<br>
+            <strong>Aluno:</strong> JOÃO VITOR CARVALHO COSTA<br>
+            <strong>CPF:</strong> 078.***.***-26<br>
+            <strong>Data de expedição do documento:</strong> 13/02/2026<br><br>
+            
+            <div class="footer-info" id="audit-trail"></div>
+        </div>
+
+        <button class="btn-action">📄 Gerar documento</button>
+        <button class="btn-action" onclick="window.print()">🖨 Imprimir esta consulta</button>
+    </div>
+</div>
+
+<script>
+    const desafios = [
+        { p: "Na palavra: CARRO. Quais letras são vogais?", r: "AO" },
+        { p: "Quanto é 7 + 3?", r: "10" },
+        { p: "Qual a primeira letra de BRASIL?", r: "B" },
+        { p: "Na palavra: FORMA. Qual a última letra?", r: "A" }
+    ];
+    let desafioAtual;
+
+    function gerarDesafio() {
+        desafioAtual = desafios[Math.floor(Math.random() * desafios.length)];
+        document.getElementById('label-captcha').innerText = desafioAtual.p;
+    }
+
+    function validar() {
+        const codInput = document.getElementById('codigo').value.toUpperCase().trim();
+        const capInput = document.getElementById('captcha').value.toUpperCase().trim().replace(/\s/g, '');
+        
+        if (codInput === "RQ705HBYF2U2250" && capInput === desafioAtual.r.replace(/\s/g, '')) {
+            document.getElementById('busca-section').style.display = 'none';
+            document.getElementById('sucesso-section').style.display = 'block';
+            document.getElementById('res-codigo').innerText = codInput;
+            
+            const agora = new Date();
+            document.getElementById('audit-trail').innerHTML = 
+                `Consultado em: ${agora.toLocaleString('pt-BR')}. IP: 2804:436c:f0:1f2c... Localização: Carolina-MA.`;
+        } else {
+            alert("Erro na validação. Verifique os dados.");
+            gerarDesafio();
+        }
+    }
+</script>
+
+</body>
+</html>
